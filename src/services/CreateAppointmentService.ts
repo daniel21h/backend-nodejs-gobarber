@@ -5,7 +5,7 @@ import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
 /**
  * [x] Recebimento das informações
- * [/] Tratativa de erros/excessões
+ * [x] Tratativa de erros/excessões
  * [x] Acesso ao repositório
  */
 
