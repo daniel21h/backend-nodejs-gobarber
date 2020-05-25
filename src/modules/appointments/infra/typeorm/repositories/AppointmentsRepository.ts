@@ -1,10 +1,13 @@
 import { EntityRepository, Repository } from 'typeorm';
 
-import Appointment from '../infra/typeorm/entities/Appointment';
+import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
+
+import Appointment from '../entities/Appointment';
 
 @EntityRepository(Appointment)
-class AppointmentsRepository extends Repository<Appointment> {
-  public async findByDate(date: Date): Promise<Appointment | null> {
+class AppointmentsRepository extends Repository<Appointment>
+  implements IAppointmentsRepository {
+  public async findByDate(date: Date): Promise<Appointment | undefined> {
     // Encontrar agendamento na mesma data retornando true or false,
     // para não haver agendamentos no mesmo horário
     const findAppointment = await this.findOne({
@@ -12,7 +15,7 @@ class AppointmentsRepository extends Repository<Appointment> {
       where: { date },
     });
 
-    return findAppointment || null;
+    return findAppointment;
   }
 }
 export default AppointmentsRepository;
